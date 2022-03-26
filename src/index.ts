@@ -1,24 +1,4 @@
-import { effectWatch, reactive } from "./core/reactivity"
+import { createApp } from "./core";
+import App from "./App";
 
-interface Person {
-    age: number;
-}
-
-let a = reactive({
-    age: 18
-}) as Person;
-
-let b: number;
-
-effectWatch(() => {
-    b = a.age + 10;
-    console.log(b);
-})
-
-a.age = 20;
-
-
-const App = {
-    render() {},
-    setup() {}
-}
+createApp(App).mount(document.getElementById("app"));
