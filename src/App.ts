@@ -1,3 +1,4 @@
+import { h } from "./core/h";
 import { effectWatch, reactive } from "./core/reactivity/index"
 
 // interface Person {
@@ -27,14 +28,15 @@ type IWindow = Window & typeof globalThis & { state: State };
 
 import { State, IObject, MyApp } from "./core/types/MyApp";
 
-export default  {
+const App: MyApp = {
     render(context: IObject) {
         // view 每次都要重新创建
         // 要计算出最小的更新节点 vdom：diff 算法
         // 构建视图
-        const div = <HTMLElement>document.createElement("div")
-        div.innerHTML = "" + context.state.count;
-        return div;
+        // const div = <HTMLElement>document.createElement("div")
+        // div.innerHTML = "" + context.state.count;
+        // return div;
+        return h("div", null, String(context.state.count));
     },
     setup() {
         const state = reactive({
@@ -47,3 +49,4 @@ export default  {
     }
 }
 
+export default App
